@@ -1,0 +1,82 @@
+@import "@fontsource-variable/newsreader/index.css";
+@import "@fontsource-variable/newsreader/wght-italic.css";
+@import "@fontsource-variable/instrument-sans/index.css";
+@import "@fontsource-variable/geist-mono/index.css";
+
+:root {
+  --apostil-default-ink: #1f2322;
+  --apostil-ink: var(--apostil-default-ink);
+  --apostil-toast-font: "Instrument Sans Variable", ui-sans-serif, sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+:focus-visible {
+  outline: 1.5px solid rgba(127, 127, 127, 0.65);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: rgba(115, 168, 154, 0.32);
+}
+
+.cm-thread-streaming {
+  animation: apostil-mark-write 1.1s cubic-bezier(0.77, 0, 0.175, 1) infinite alternate;
+}
+
+@keyframes apostil-mark-write {
+  from {
+    text-decoration-color: transparent;
+  }
+}
+
+@keyframes apostil-ink-pulse {
+  from {
+    transform: scale(0.75);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-property: opacity, color, background-color !important;
+  }
+}
+
+[data-print-view] {
+  display: none;
+}
+
+@media print {
+  @page {
+    margin: 18mm;
+  }
+  body {
+    background: #fff;
+  }
+  #root > [data-app-scroller] > :not([data-print-view]) {
+    display: none !important;
+  }
+  [data-app-scroller] {
+    position: static !important;
+    overflow: visible !important;
+    background: #fff !important;
+  }
+  [data-print-view] {
+    display: block;
+  }
+}
